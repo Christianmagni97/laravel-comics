@@ -1,17 +1,51 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-use Illuminate\Http\Request;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/scss/app.scss', 'resources/js/app.js')
+    <title>laravel-comics</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <section class="image">
+                <img src="../assets/img/dc-logo.png" alt="dc-logo">
+            </section>
+            <section class="list-title">
+                <ul>
+                    <li v-for="(title,index) in headerLink" :key="title.id">title</li>
+                </ul>
+            </section>
+        </div>
+        <div class="jumbotron"></div>
+    </header>
+    <main>
+        <section class="container">
+            <article>
+                <div class="comics">
+                    <CardDcComics v-for="(comic, index) in comicSeries" :key="index" :singleComic="comic" />
+                </div>
+                <button>Load More</button>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <section class="d-flex">
+            <article class="d-flex">
+                <button>sing-up now!</button>
+            </article>
+            <article class="d-flex">
+                <h2>follow us</h2>
+                <img src="../img/footer-facebook.png">
+                <img src="../img/footer-twitter.png">
+                <img src="../img/footer-youtube.png">
+                <img src="../img/footer-pinterest.png">
+                <img src="../img/footer-periscope.png">
+            </article>
+        </section>
+    </footer>
+</body>
 
-define('LARAVEL_START', microtime(true));
-
-// Determine if the application is in maintenance mode...
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
-}
-
-// Register the Composer autoloader...
-require __DIR__.'/../vendor/autoload.php';
-
-// Bootstrap Laravel and handle the request...
-(require_once __DIR__.'/../bootstrap/app.php')
-    ->handleRequest(Request::capture());
+</html>
