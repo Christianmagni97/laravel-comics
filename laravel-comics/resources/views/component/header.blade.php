@@ -6,6 +6,9 @@
         <section class="list-title">
             <ul>
                 <li v-for="(title,index) in headerLink" :key="title.id">title</li>
+                @foreach($headerLinks as $headerLink)
+                <li>{{ $headerLink['title'] }}</li>
+                @endforeach
             </ul>
         </section>
     </div>
